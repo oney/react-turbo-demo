@@ -1,24 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+
+function expensiveRandom(a: number) {
+  let k = 0;
+  for (let i = 0; i < 10_000_000; i++) k += Math.random();
+  return k + a;
+}
 
 function App() {
+  const [a, setA] = useState(1000);
+  const [b, setB] = useState(1000);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>
+        <input
+          value={a}
+          onChange={(e) => setA(parseInt(e.target.value))}
+          type="number"
+        />
+        {expensiveRandom(a)}
+      </div>
+      <div>
+        <input
+          value={b}
+          onChange={(e) => setB(parseInt(e.target.value))}
+          type="number"
+        />
+        {b}
+      </div>
     </div>
   );
 }
